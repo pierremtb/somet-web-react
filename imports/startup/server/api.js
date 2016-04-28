@@ -1,0 +1,10 @@
+import '../../api/workouts/methods.js';
+import '../../api/workouts/server/publications.js';
+import '../../api/plans/methods.js';
+import '../../api/plans/server/publications.js';
+import '../../api/events/methods.js';
+import '../../api/events/server/publications.js';
+import '../../api/groups/methods.js';
+import '../../api/groups/server/publications.js';
+import '../../api/users/methods.js';
+import '../../api/users/server/publications.js';

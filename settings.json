@@ -1,0 +1,15 @@
+{
+  "public": {
+    "key": "value"
+  },
+  "private": {
+    "MAIL_URL": "",
+    "oAuth": {
+      "strava": {
+        "client_id": "10611",
+        "secret": "70d440f006a6595ae352f56fda68235d6dbbb2e6",
+        "loginStyle": "redirect"
+      }
+    }
+  }
+}
