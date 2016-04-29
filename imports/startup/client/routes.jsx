@@ -10,8 +10,10 @@ import { TabPlans } from '../../ui/components/tab-plans.jsx';
 import { TabCalendar } from '../../ui/components/tab-calendar.jsx';
 import { TabAnalysis } from '../../ui/components/tab-analysis.jsx';
 import { PagePlan } from '../../ui/pages/page-plan.jsx';
+import { PageWorkout } from '../../ui/pages/page-workout.jsx';
 import { PageFeed } from '../../ui/pages/page-feed.jsx';
 import { PagePlanEdit } from '../../ui/pages/page-plan-edit.jsx';
+import { PageWorkoutEdit } from '../../ui/pages/page-workout-edit.jsx';
 import { PageGroupEdit } from '../../ui/pages/page-group-edit.jsx';
 import { PageLogin } from '../../ui/pages/page-login.jsx';
 import { PageAthlete } from '../../ui/pages/page-athlete.jsx';
@@ -54,9 +56,7 @@ Meteor.startup(() => {
         <Route path="/" component={AppLayout}>
           <IndexRoute name="home" component={PageFeed} onEnter={requireAuth} />
           <Route path="feed" component={PageFeed} onEnter={requireAuth} />
-
           <Route name="create-group" path="/group/new" component={PageGroupEdit} />
-
           <Route
             name="page-athlete"
             path="/group/:group/athlete/:athlete"
@@ -69,15 +69,23 @@ Meteor.startup(() => {
             <Route path="calendar" component={TabCalendar} onEnter={requireAuth} />
             <Route path="analysis" component={TabAnalysis} onEnter={requireAuth} />
           </Route>
-
           <Route
-            name="page-athlete-edit"
+            name="page-plan"
             path="/group/:group/athlete/:athlete/plan"
             onEnter={requireAuth}
           >
             <Route path="view/:id" component={PagePlan} onEnter={requireAuth} />
             <Route path="edit/:id" component={PagePlanEdit} onEnter={requireAuth} />
             <Route path="new" component={PagePlanEdit} onEnter={requireAuth} />
+          </Route>
+          <Route
+            name="page-workout"
+            path="/group/:group/athlete/:athlete/workout"
+            onEnter={requireAuth}
+          >
+            <Route path="view/:id" component={PageWorkout} onEnter={requireAuth} />
+            <Route path="edit/:id" component={PageWorkoutEdit} onEnter={requireAuth} />
+            <Route path="new" component={PageWorkoutEdit} onEnter={requireAuth} />
           </Route>
           <Route path="*" component={PageNotFound} />
         </Route>
