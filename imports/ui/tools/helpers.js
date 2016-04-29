@@ -27,6 +27,10 @@ export function dispSupport(s) {
   }
 }
 
+export function dispDistance(meters) {
+  return `${(meters / 1000).toFixed(2)}km`;
+}
+
 export function dispType(t) {
   switch (t) {
     case 'wk': return 'Entrainement';

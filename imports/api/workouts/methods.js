@@ -11,11 +11,9 @@ export const insert = new ValidatedMethod({
 
 export const update = new ValidatedMethod({
   name: 'workouts.update',
-  validate: new SimpleSchema({
-    _id: { type: String },
-  }).validator(),
-  run({ _id, obj }) {
-    Workouts.update(_id, { $set: obj });
+  validate() {},
+  run({ _id, workout }) {
+    Workouts.update(_id, { $set: workout });
   },
 });
 

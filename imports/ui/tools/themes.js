@@ -100,3 +100,13 @@ export const hintTextFieldStyleDark = {
   color: 'rgba(255,255,255,0.7)',
   paddingBottom: '15px',
 };
+
+export const workoutCardTextStyle = {
+  height: '15rem',
+  overflowY: 'auto',
+};
+
+export const planCardTextStyle = {
+  height: '9rem',
+  overflowY: 'auto',
+};

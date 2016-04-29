@@ -14,7 +14,7 @@ import MenuItem from 'material-ui/MenuItem';
 import {
   sometLightTheme,
   pageActionStyle,
-  datePickerFieldStyle,
+  datePickerFieldStyle, workoutCardTextStyle,
   datePickerStyle, hintTextFieldStyleDark, normalTextFieldStyleDark } from '../tools/themes.js';
 
 export class PageWorkoutEdit extends React.Component {
@@ -32,10 +32,10 @@ export class PageWorkoutEdit extends React.Component {
         durationValue: workout.duration ? workout.duration : 0,
         distanceValue: workout.distance ? workout.distance : 0,
         supportValue: workout.support ? workout.support : '',
-        crEffortValue: workout.cr ? workout.cr.effort + '' : 0,
-        crPleasureValue: workout.cr ? workout.cr.pleasure + '' : 0,
-        crSensationsValue: workout.cr ? workout.cr.sensations + '' : 0,
-        crMoodValue: workout.cr ? workout.cr.mood + '' : 0,
+        crEffortValue: workout.cr ? `${workout.cr.effort}` : 0,
+        crPleasureValue: workout.cr ? `${workout.cr.pleasure}` : 0,
+        crSensationsValue: workout.cr ? `${workout.cr.sensations}` : 0,
+        crMoodValue: workout.cr ? `${workout.cr.mood}` : 0,
         fitLinked: workout.fitLinked ? workout.fitLinked : false,
       };
     } else {
@@ -130,7 +130,12 @@ export class PageWorkoutEdit extends React.Component {
   }
 
   goBack() {
-    const url = `/group/${this.props.params.group}/athlete/${this.props.params.athlete}/dashboard`;
+    let url = `/group/${this.props.params.group}/athlete/${this.props.params.athlete}/`;
+    if (Session.get('workoutToEdit')) {
+      url += `workout/view/${Session.get('workoutToEdit')._id}`;
+    } else {
+      url += 'workouts';
+    }
     browserHistory.push(url);
     Session.set('workoutToEdit', false);
   }
@@ -152,6 +157,7 @@ export class PageWorkoutEdit extends React.Component {
         mood: parseFloat(this.state.crMoodValue),
       },
     };
+    console.log(workout);
     if (Session.get('workoutToEdit')) {
       Workouts.update.call({ _id: Session.get('workoutToEdit')._id, workout }, (e) => {
         if (!e) {
@@ -159,10 +165,11 @@ export class PageWorkoutEdit extends React.Component {
           const url = `/group/${this.props.params.group}/athlete/` +
             `${this.props.params.athlete}/workout/view/${this.props.params.id}`;
           browserHistory.push(url);
+        } else {
+          console.log(e);
         }
       });
     } else {
-      console.log(workout);
       Workouts.insert.call(workout, (e) => {
         if (!e) {
           const url = `/group/${this.props.params.group}/athlete/` +
@@ -230,14 +237,14 @@ export class PageWorkoutEdit extends React.Component {
         <MuiThemeProvider muiTheme={sometLightTheme}>
           <div className="row">
             <div className="col s12 m6 space_bottom">
-              <Card>
+              <Card initiallyExpanded>
                 <CardHeader
                   title="Détails"
                   subtitle="Informations sur la sortie"
                   actAsExpander
                   showExpandableButton
                 />
-                <CardText expandable>
+                <CardText expandable style={workoutCardTextStyle}>
                   <SelectField
                     value={this.state.supportValue}
                     onChange={this.handleSupportChange}
@@ -275,14 +282,14 @@ export class PageWorkoutEdit extends React.Component {
               </Card>
             </div>
             <div className="col s12 m6 space_bottom">
-              <Card>
+              <Card initiallyExpanded>
                 <CardHeader
                   title="Evaluation des sensations"
                   subtitle="Echelles CR10 pour l'entraineur"
                   actAsExpander
                   showExpandableButton
                 />
-                <CardText expandable>
+                <CardText expandable style={workoutCardTextStyle}>
                   <SubHeader>Avant la sortie</SubHeader>
                   <SelectField
                     value={this.state.crSensationsValue}
@@ -381,17 +388,20 @@ export class PageWorkoutEdit extends React.Component {
               </Card>
             </div>
             <div className="col s12 m6 space_bottom">
-              <Card>
+              <Card initiallyExpanded>
                 <CardHeader
                   title="Contenu"
                   subtitle="Description de la séance"
                   actAsExpander
                   showExpandableButton
                 />
-                <CardText expandable>
+                <CardText expandable style={workoutCardTextStyle}>
                   <TextField
                     hintText="Description de la séance..."
+                    value={this.state.descriptionValue}
+                    onChange={this.handleDescriptionChange}
                     multiLine
+                    fullWidth
                     rows={2}
                     rowsMax={99}
                   />

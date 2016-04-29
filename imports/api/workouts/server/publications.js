@@ -7,6 +7,11 @@ Meteor.publish('usr-workouts', usr => {
   return Workouts.find({ owner: id });
 });
 
+Meteor.publish('this-workout', id => {
+  check(id, String);
+  return Workouts.find({ _id: id });
+});
+
 Meteor.publish('user-last-workout', usr => {
   check(usr, String);
   const id = Meteor.users.findOne({ username: usr })._id;

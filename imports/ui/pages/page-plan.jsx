@@ -9,7 +9,7 @@ import FontIcon from 'material-ui/FontIcon';
 import reactMixin from 'react-mixin';
 import { Loading } from '../components/loading.jsx';
 import { lightWhite, white, yellow200 } from 'material-ui/styles/colors';
-import { sometLightTheme, pageActionStyle } from '../tools/themes.js';
+import { sometLightTheme, pageActionStyle, planCardTextStyle } from '../tools/themes.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import moment from 'moment';
@@ -28,7 +28,12 @@ export class PagePlan extends React.Component {
     const handle = Meteor.subscribe('this-plan', id);
     if (handle.ready()) {
       data.plan = Plans.findOne({ _id: id });
-      console.log(data);
+      this.canEdit = data.plan.owner === Meteor.userId();
+      this.canView = this.canEdit || data.plan.targetedUser === Meteor.userId();
+
+      if (!this.canView) {
+        this.goBack();
+      }
     }
     return data;
   }
@@ -59,12 +64,14 @@ export class PagePlan extends React.Component {
             onClick={this.goBack}
             icon={<FontIcon className="material-icons">arrow_back</FontIcon>}
           />
-          <FlatButton
-            label="Modifier"
-            onClick={this.editPlan}
-            style={pageActionStyle}
-            icon={<FontIcon className="material-icons">edit</FontIcon>}
-          />
+          {this.canEdit ?
+            <FlatButton
+              label="Modifier"
+              onClick={this.editPlan}
+              style={pageActionStyle}
+              icon={<FontIcon className="material-icons">edit</FontIcon>}
+            />
+          : null}
         </div>
         {this.data.plan ?
           <div className="row">
@@ -100,13 +107,13 @@ export class PagePlan extends React.Component {
                         showExpandableButton
                       />
                       {day.type === 'nth' ?
-                        <CardText expandable>
+                        <CardText expandable style={planCardTextStyle}>
                           <p><br /></p>
                           <p><br /></p>
                           <p><br /></p>
                         </CardText>
                       :
-                        <CardText expandable>
+                        <CardText expandable style={planCardTextStyle}>
                           <p>{dispSupport(day.support)}</p>
                           <p>{dispDuration(day.duration)}</p>
                           <p>{day.description}</p>
