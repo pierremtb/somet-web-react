@@ -86,24 +86,27 @@ export class PagePlan extends React.Component {
                 {this.data.plan.days.map((day, key) => (
                   <div className="col s6 m4 space_bottom">
                     <Card
+                      initiallyExpanded
                       style={{
                         background: day.type === 'wk' ? yellow200 : white,
-                        height: '15rem',
+                        // height: '15rem',
                         overflow: 'auto',
                       }}
                     >
                       <CardHeader
-                        title={() => this.getTitle(this.data.plan.mondayDate, key)}
+                        title={this.getTitle(this.data.plan.mondayDate, key)}
                         subtitle={dispType(day.type)}
+                        actAsExpander
+                        showExpandableButton
                       />
                       {day.type === 'nth' ?
-                        <CardText>
+                        <CardText expandable>
                           <p><br /></p>
                           <p><br /></p>
                           <p><br /></p>
                         </CardText>
                       :
-                        <CardText>
+                        <CardText expandable>
                           <p>{dispSupport(day.support)}</p>
                           <p>{dispDuration(day.duration)}</p>
                           <p>{day.description}</p>

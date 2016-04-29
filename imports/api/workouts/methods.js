@@ -1,10 +1,9 @@
 import { Workouts } from './workouts';
+import { insertWorkoutSchema } from './schema';
 
 export const insert = new ValidatedMethod({
   name: 'workouts.insert',
-  validate: new SimpleSchema({
-    startDate: { type: Date },
-  }).validator(),
+  validate: insertWorkoutSchema.validator(),
   run(workout) {
     Workouts.insert(workout);
   },

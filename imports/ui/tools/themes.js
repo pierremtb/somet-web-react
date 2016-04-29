@@ -29,6 +29,7 @@ export const sometDarkTheme = getMuiTheme({
   datePicker: {
     color: white,
     textColor: white,
+    calendarTextColor: darkBlack,
     selectColor: accentColor,
     calendarYearBackgroundColor: white,
   },
@@ -80,6 +81,7 @@ export const datePickerFieldStyle = {
 
 export const datePickerStyle = {
   display: 'inline-block',
+  color: darkBlack,
 };
 
 export const textFieldStyleDark = {
@@ -88,6 +90,10 @@ export const textFieldStyleDark = {
   height: '4rem',
   fontWeight: '300',
   paddingBottom: '15px',
+};
+
+export const normalTextFieldStyleDark = {
+  color: 'white',
 };
 
 export const hintTextFieldStyleDark = {

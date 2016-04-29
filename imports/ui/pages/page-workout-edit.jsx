@@ -3,7 +3,6 @@ import { browserHistory } from 'react-router';
 import { Session } from 'meteor/session';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import * as Workouts from '../../api/workouts/methods';
-import { dispDate } from '../tools/helpers.js';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import DatePicker from 'material-ui/DatePicker';
@@ -16,9 +15,10 @@ import {
   sometLightTheme,
   pageActionStyle,
   datePickerFieldStyle,
-  datePickerStyle, hintTextFieldStyleDark } from '../tools/themes.js';
+  datePickerStyle, hintTextFieldStyleDark, normalTextFieldStyleDark } from '../tools/themes.js';
 
 export class PageWorkoutEdit extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -54,6 +54,26 @@ export class PageWorkoutEdit extends React.Component {
       };
     }
 
+    this.durationItems = [];
+    for (let i = 1; i < 120; i++) {
+      this.durationItems.push(
+        <MenuItem
+          value={300 * i}
+          primaryText={`${Math.floor(300 * i / 3600)}h${300 * i % 3600 / 60}`}
+        />
+      );
+    }
+
+    this.distanceItems = [];
+    for (let i = 1; i < 300; i++) {
+      this.distanceItems.push(
+        <MenuItem
+          value={i}
+          primaryText={`${i} km`}
+        />
+      );
+    }
+
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleStartDateChange = this.handleStartDateChange.bind(this);
@@ -80,7 +100,7 @@ export class PageWorkoutEdit extends React.Component {
     this.setState({ startDateValue });
   }
 
-  handleDurationChange(event, durationValue) {
+  handleDurationChange(event, index, durationValue) {
     this.setState({ durationValue });
   }
 
@@ -88,7 +108,7 @@ export class PageWorkoutEdit extends React.Component {
     this.setState({ distanceValue });
   }
 
-  handleSupportChange(event, supportValue) {
+  handleSupportChange(event, index, supportValue) {
     this.setState({ supportValue });
   }
 
@@ -142,11 +162,14 @@ export class PageWorkoutEdit extends React.Component {
         }
       });
     } else {
+      console.log(workout);
       Workouts.insert.call(workout, (e) => {
         if (!e) {
           const url = `/group/${this.props.params.group}/athlete/` +
             `${this.props.params.athlete}/dashboard`;
           browserHistory.push(url);
+        } else {
+          console.log(e);
         }
       });
     }
@@ -189,25 +212,77 @@ export class PageWorkoutEdit extends React.Component {
               </div>
             }
             <br />
-            <TextField
-              hintText="Description rapide..."
-              value={this.state.titleValue}
-              onChange={this.handleTitleChange}
-            />
+
+            <MuiThemeProvider muiTheme={sometLightTheme}>
+              <DatePicker
+                hintText="Date"
+                container="inline"
+                value={this.state.startDateValue}
+                onChange={this.handleStartDateChange}
+                textFieldStyle={normalTextFieldStyleDark}
+                style={datePickerStyle}
+                autoOk
+              />
+            </MuiThemeProvider>
           </div>
         </div>
 
         <MuiThemeProvider muiTheme={sometLightTheme}>
           <div className="row">
-            <div className="col s12 m6 space_top">
-              <Card
-                style={{
-                  height: '30rem',
-                  overflow: 'auto',
-                }}
-              >
-                <CardHeader title="Evaluation des sensations" />
-                <CardText>
+            <div className="col s12 m6 space_bottom">
+              <Card>
+                <CardHeader
+                  title="Détails"
+                  subtitle="Informations sur la sortie"
+                  actAsExpander
+                  showExpandableButton
+                />
+                <CardText expandable>
+                  <SelectField
+                    value={this.state.supportValue}
+                    onChange={this.handleSupportChange}
+                    floatingLabelText="Support"
+                    fullWidth
+                  >
+                    <MenuItem value="mtb" primaryText="VTT" />
+                    <MenuItem value="road" primaryText="Route" />
+                    <MenuItem value="ht" primaryText="Home Trainer" />
+                    <MenuItem value="run" primaryText="Course à pied" />
+                    <MenuItem value="skix" primaryText="Ski de fond" />
+                    <MenuItem value="swim" primaryText="Natation" />
+                    <MenuItem value="endr" primaryText="Enduro" />
+                    <MenuItem value="othr" primaryText="Autre" />
+                  </SelectField>
+
+                  <SelectField
+                    value={this.state.durationValue}
+                    onChange={this.handleDurationChange}
+                    floatingLabelText="Durée de la séance"
+                    fullWidth
+                  >
+                    {this.durationItems}
+                  </SelectField>
+
+                  <SelectField
+                    value={this.state.distanceValue}
+                    onChange={this.handleDistanceChange}
+                    floatingLabelText="Distance parcourue"
+                    fullWidth
+                  >
+                    {this.distanceItems}
+                  </SelectField>
+                </CardText>
+              </Card>
+            </div>
+            <div className="col s12 m6 space_bottom">
+              <Card>
+                <CardHeader
+                  title="Evaluation des sensations"
+                  subtitle="Echelles CR10 pour l'entraineur"
+                  actAsExpander
+                  showExpandableButton
+                />
+                <CardText expandable>
                   <SubHeader>Avant la sortie</SubHeader>
                   <SelectField
                     value={this.state.crSensationsValue}
@@ -302,64 +377,24 @@ export class PageWorkoutEdit extends React.Component {
                     <MenuItem value="10" primaryText="10" />
                     <MenuItem value="11" primaryText="11" />
                   </SelectField>
-                  {/*
-                  <SelectField
-                    value={this.state.supportValue}
-                    onChange={this.handleSupportChange}
-                    floatingLabelText="Support"
-                    disabled={this.state.disabled}
-                    fullWidth
-                  >
-                    <MenuItem value="mtb" primaryText="VTT" />
-                    <MenuItem value="road" primaryText="Route" />
-                    <MenuItem value="ht" primaryText="Home Trainer" />
-                    <MenuItem value="run" primaryText="Course à pied" />
-                    <MenuItem value="skix" primaryText="Ski de fond" />
-                    <MenuItem value="swim" primaryText="Natation" />
-                    <MenuItem value="endr" primaryText="Enduro" />
-                    <MenuItem value="othr" primaryText="Autre" />
-                  </SelectField>
-
-                  <SelectField
-                    value={this.state.durationValue}
-                    onChange={this.handleDurationChange}
-                    floatingLabelText="Durée"
-                    disabled={this.state.disabled}
-                    fullWidth
-                  >
-                    <MenuItem value={900} primaryText="0h15" />
-                    <MenuItem value={1800} primaryText="0h30" />
-                    <MenuItem value={2700} primaryText="0h45" />
-                    <MenuItem value={3600} primaryText="1h00" />
-                    <MenuItem value={4500} primaryText="1h15" />
-                    <MenuItem value={5400} primaryText="1h30" />
-                    <MenuItem value={6300} primaryText="1h45" />
-                    <MenuItem value={7200} primaryText="2h00" />
-                    <MenuItem value={8100} primaryText="2h15" />
-                    <MenuItem value={9000} primaryText="2h30" />
-                    <MenuItem value={9900} primaryText="2h45" />
-                    <MenuItem value={10800} primaryText="3h00" />
-                    <MenuItem value={11700} primaryText="3h15" />
-                    <MenuItem value={12600} primaryText="3h30" />
-                    <MenuItem value={13500} primaryText="3h45" />
-                    <MenuItem value={14400} primaryText="4h00" />
-                    <MenuItem value={16200} primaryText="4h30" />
-                    <MenuItem value={18000} primaryText="5h00" />
-                    <MenuItem value={21600} primaryText="6h00" />
-                  </SelectField>
-
+                </CardText>
+              </Card>
+            </div>
+            <div className="col s12 m6 space_bottom">
+              <Card>
+                <CardHeader
+                  title="Contenu"
+                  subtitle="Description de la séance"
+                  actAsExpander
+                  showExpandableButton
+                />
+                <CardText expandable>
                   <TextField
-                    floatingLabelText="Description"
-                    floatingLabelFixed
+                    hintText="Description de la séance..."
                     multiLine
-                    fullWidth
-                    disabled={this.state.disabled}
                     rows={2}
-                    value={this.state.descriptionValue}
-                    rowsMax={20}
-                    onChange={(e) => this.handleDescriptionChange(e.target.value)}
+                    rowsMax={99}
                   />
-          */}
                 </CardText>
               </Card>
             </div>
