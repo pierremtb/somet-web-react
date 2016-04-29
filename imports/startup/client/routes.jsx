@@ -63,11 +63,11 @@ Meteor.startup(() => {
             component={PageAthlete}
             onEnter={requireAuth}
           >
-            <Route path="dashboard" component={TabDashboard} onEnter={requireAuth} />
-            <Route path="workouts" component={TabWorkouts} onEnter={requireAuth} />
-            <Route path="plans" component={TabPlans} onEnter={requireAuth} />
-            <Route path="calendar" component={TabCalendar} onEnter={requireAuth} />
-            <Route path="analysis" component={TabAnalysis} onEnter={requireAuth} />
+            <Route path="dashboard" name="dashboard" component={TabDashboard} onEnter={requireAuth} />
+            <Route path="workouts" name="workouts" component={TabWorkouts} onEnter={requireAuth} />
+            <Route path="plans" name="plans" component={TabPlans} onEnter={requireAuth} />
+            <Route path="calendar" name="calendar" component={TabCalendar} onEnter={requireAuth} />
+            <Route path="analysis" name="analysis" component={TabAnalysis} onEnter={requireAuth} />
           </Route>
           <Route
             name="page-plan"

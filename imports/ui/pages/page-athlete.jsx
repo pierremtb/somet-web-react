@@ -7,7 +7,7 @@ export class PageAthlete extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.route.path,
+      value: this.props.routes[this.props.routes.length - 1].path,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -61,5 +61,5 @@ export class PageAthlete extends React.Component {
 PageAthlete.propTypes = {
   children: React.PropTypes.element,
   params: React.PropTypes.object,
-  route: React.PropTypes.route,
+  routes: React.PropTypes.routes,
 };

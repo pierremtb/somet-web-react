@@ -1,13 +1,14 @@
 import React from 'react';
-import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import { sometLightTheme } from '../tools/themes.js';
-import { dispType, dispSupport, dispDuration } from '../tools/helpers.js';
+import { sometLightTheme, planCardTextStyle } from '../tools/themes.js';
+import { dispType, dispSupport, dispDuration, dispDate } from '../tools/helpers.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export function DashboardCards(props) {
   const today = new Date();
   const weekPlan = props.thisWeekPlan;
+  const lastWorkout = props.lastWorkout;
   let todayPlan = false;
   if (weekPlan) {
     todayPlan = weekPlan.days[today.getDay() - 1];
@@ -16,29 +17,33 @@ export function DashboardCards(props) {
     <MuiThemeProvider muiTheme={sometLightTheme}>
       <div className="row">
         <div className="col s6">
-          <Card>
+          <Card initiallyExpanded>
             <CardHeader
-              title="Dernier entrainement"
-              subtitle="27/03/1997"
+              title={lastWorkout ? 'Dernier entrainement' : 'Pas encore d\'entrainement'}
+              subtitle={lastWorkout ? dispDate(lastWorkout.startDate) : 'Ajoutez-en un !'}
+              actAsExpander
+              showExpandableButton
             />
-            <CardText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            <CardText expandable style={planCardTextStyle}>
+              {lastWorkout ?
+                <div>
+                  <p>{dispSupport(lastWorkout.support)}</p>
+                  <p>{dispDuration(lastWorkout.duration)}</p>
+                  <p>{lastWorkout.description}</p>
+                </div>
+              : null}
             </CardText>
-            <CardActions expandable>
-              <FlatButton label="Action2" />
-            </CardActions>
           </Card>
         </div>
         <div className="col s6">
-          <Card>
+          <Card initiallyExpanded>
             <CardHeader
               title={todayPlan ? 'Programme du jour' : 'Pas de plan pour cette semaine'}
-              subtitle={todayPlan ? dispType(todayPlan.type) : ''}
+              subtitle={todayPlan ? dispType(todayPlan.type) : 'Contactez votre entraineur !'}
+              actAsExpander
+              showExpandableButton
             />
-            <CardText>
+            <CardText expandable style={planCardTextStyle}>
               <p>
                 {todayPlan.support ? dispSupport(todayPlan.support) : ''}
               </p>
@@ -49,9 +54,6 @@ export function DashboardCards(props) {
                 {todayPlan.description ? todayPlan.description : ''}
               </p>
             </CardText>
-            <CardActions expandable>
-              <FlatButton label="Action2" />
-            </CardActions>
           </Card>
         </div>
       </div>
