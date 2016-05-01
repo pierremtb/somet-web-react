@@ -44,15 +44,19 @@ export function DashboardCards(props) {
               showExpandableButton
             />
             <CardText expandable style={planCardTextStyle}>
-              <p>
-                {todayPlan.support ? dispSupport(todayPlan.support) : ''}
-              </p>
-              <p>
-                {todayPlan.duration ? dispDuration(todayPlan.duration) : ''}
-              </p>
-              <p>
-                {todayPlan.description ? todayPlan.description : ''}
-              </p>
+              {todayPlan ?
+                <div>
+                  <p>
+                    {todayPlan.support ? dispSupport(todayPlan.support) : ''}
+                  </p>
+                  <p>
+                    {todayPlan.duration ? dispDuration(todayPlan.duration) : ''}
+                  </p>
+                  <p>
+                    {todayPlan.description ? todayPlan.description : ''}
+                  </p>
+                </div>
+              : null}
             </CardText>
           </Card>
         </div>
