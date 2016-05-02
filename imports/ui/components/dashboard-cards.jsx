@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 import { sometLightTheme, planCardTextStyle } from '../tools/themes.js';
 import { dispType, dispSupport, dispDuration, dispDate } from '../tools/helpers.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

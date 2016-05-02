@@ -130,7 +130,8 @@ export class PageWorkoutEdit extends React.Component {
   }
 
   goBack() {
-    let url = `/group/${this.props.params.group}/athlete/${this.props.params.athlete}/`;
+    const { group, athlete } = this.props.params;
+    let url = `/group/${group}/athlete/${athlete}/`;
     if (Session.get('workoutToEdit')) {
       url += `workout/view/${Session.get('workoutToEdit')._id}`;
     } else {

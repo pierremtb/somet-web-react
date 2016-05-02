@@ -66,8 +66,8 @@ export class PageWorkout extends React.Component {
   }
 
   goBack() {
-    const url = `/group/${this.props.params.group}/athlete/${this.props.params.athlete}/workouts`;
-    browserHistory.push(url);
+    const { group, athlete } = this.props.params;
+    browserHistory.push(`/group/${group}/athlete/${athlete}/workouts`);
   }
 
   render() {

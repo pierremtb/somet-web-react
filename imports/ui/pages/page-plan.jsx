@@ -20,6 +20,7 @@ export class PagePlan extends React.Component {
 
     this.getMeteorData = this.getMeteorData.bind(this);
     this.editPlan = this.editPlan.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   getMeteorData() {
@@ -50,8 +51,8 @@ export class PagePlan extends React.Component {
   }
 
   goBack() {
-    const url = `/group/${this.props.params.group}/athlete/${this.props.params.athlete}/dashboard`;
-    browserHistory.push(url);
+    const { group, athlete } = this.props.params;
+    browserHistory.push(`/group/${group}/athlete/${athlete}/plans`);
   }
 
   render() {

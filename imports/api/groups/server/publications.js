@@ -7,6 +7,8 @@ Meteor.publish('my-groups', function getMyGroup() {
   return Groups.find({ _id: { $in: groupIds } });
 });
 
+Meteor.publish('all-groups-names', () => Groups.find({}, { fields: { name: 1 } }));
+
 Meteor.publish('this-group-name', name => {
   check(name, String);
   return Groups.find({ name });

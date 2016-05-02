@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdef1b37-5bf4-45e2-9543-bccd03971c86" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/regex-text-field.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/groups/groups.js" afterPath="$PROJECT_DIR$/imports/api/groups/groups.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/groups/server/publications.js" afterPath="$PROJECT_DIR$/imports/api/groups/server/publications.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/components/dashboard-cards.jsx" afterPath="$PROJECT_DIR$/imports/ui/components/dashboard-cards.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/page-group-edit.jsx" afterPath="$PROJECT_DIR$/imports/ui/pages/page-group-edit.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/page-plan-edit.jsx" afterPath="$PROJECT_DIR$/imports/ui/pages/page-plan-edit.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/page-plan.jsx" afterPath="$PROJECT_DIR$/imports/ui/pages/page-plan.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/page-workout-edit.jsx" afterPath="$PROJECT_DIR$/imports/ui/pages/page-workout-edit.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/page-workout.jsx" afterPath="$PROJECT_DIR$/imports/ui/pages/page-workout.jsx" />
     </list>
     <ignored path="somet-web-react.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,12 +35,12 @@
       <file leaf-file-name="page-workout.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-workout.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+            <state relative-caret-position="36">
+              <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="58" selection-end-column="3" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <marker date="1461961312976" expanded="true" signature="2689:6023" placeholder="..." />
-                <marker date="1461961312976" expanded="true" signature="2703:3195" placeholder="..." />
+                <marker date="1462186250618" expanded="true" signature="2682:6016" placeholder="..." />
+                <marker date="1462186250618" expanded="true" signature="2696:3188" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -41,43 +49,9 @@
       <file leaf-file-name="publications.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/api/groups/server/publications.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+            <state relative-caret-position="144">
+              <caret line="9" column="80" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="themes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/tools/themes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1638">
-              <caret line="96" column="2" selection-start-line="96" selection-start-column="2" selection-end-line="96" selection-end-column="2" />
-              <folding>
-                <element signature="e#0#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="helpers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/tools/helpers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/startup/client/routes.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="65" column="40" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -85,8 +59,8 @@
       <file leaf-file-name="page-workout-edit.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-workout-edit.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4122">
-              <caret line="246" column="65" selection-start-line="246" selection-start-column="25" selection-end-line="246" selection-end-column="65" />
+            <state relative-caret-position="2160">
+              <caret line="131" column="12" selection-start-line="131" selection-start-column="12" selection-end-line="140" selection-end-column="40" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -94,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard-cards.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dashboard-cards.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/components/dashboard-cards.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+            <state relative-caret-position="162">
+              <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -109,9 +83,55 @@
       <file leaf-file-name="page-plan-edit.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-plan-edit.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2412">
-              <caret line="149" column="24" selection-start-line="149" selection-start-column="24" selection-end-line="149" selection-end-column="24" />
+            <state relative-caret-position="-486">
+              <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="regex-text-field.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/components/regex-text-field.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-198">
+              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="groups.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/api/groups/groups.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="382">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="page-group-edit.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-group-edit.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <marker date="1462191910163" expanded="true" signature="1296:2440" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1310:1710" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1333:1704" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1379:1396" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1543:1704" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1594:1611" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1740:2285" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1776:2270" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1805:2253" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="1929:1949" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="2340:2427" placeholder="..." />
+                <marker date="1462191910163" expanded="true" signature="2382:2399" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,11 +139,9 @@
       <file leaf-file-name="page-plan.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-plan.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="63" column="32" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="126">
+              <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="8" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -155,8 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/imports/ui/containers/app-navigation.jsx" />
-        <option value="$PROJECT_DIR$/imports/ui/components/table-workouts.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/components/table-plan.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/components/tab-workouts.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/components/tab-plans.jsx" />
@@ -184,12 +200,9 @@
         <option value="$PROJECT_DIR$/imports/api/notifications/methods.js" />
         <option value="$PROJECT_DIR$/imports/api/notifications/server/publications.js" />
         <option value="$PROJECT_DIR$/imports/api/groups/methods.js" />
-        <option value="$PROJECT_DIR$/imports/api/groups/groups.js" />
-        <option value="$PROJECT_DIR$/imports/api/groups/server/publications.js" />
         <option value="$PROJECT_DIR$/imports/api/events/methods.js" />
         <option value="$PROJECT_DIR$/imports/api/events/events.js" />
         <option value="$PROJECT_DIR$/imports/api/events/server/publications.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/page-plan-edit.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/components/fab-athlete-content-add.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/components/plan-day-input.jsx" />
         <option value="$PROJECT_DIR$/client/stylesheets/new.scss" />
@@ -199,13 +212,18 @@
         <option value="$PROJECT_DIR$/imports/api/workouts/server/publications.js" />
         <option value="$PROJECT_DIR$/imports/api/workouts/methods.js" />
         <option value="$PROJECT_DIR$/imports/ui/tools/helpers.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/page-workout-edit.jsx" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/page-workout.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/tools/themes.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/page-plan.jsx" />
         <option value="$PROJECT_DIR$/imports/startup/client/routes.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/pages/page-athlete.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/components/dashboard-cards.jsx" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/page-plan.jsx" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/page-workout-edit.jsx" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/page-workout.jsx" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/page-plan-edit.jsx" />
+        <option value="$PROJECT_DIR$/imports/api/groups/server/publications.js" />
+        <option value="$PROJECT_DIR$/imports/ui/components/regex-text-field.jsx" />
+        <option value="$PROJECT_DIR$/imports/api/groups/groups.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/page-group-edit.jsx" />
       </list>
     </option>
   </component>
@@ -264,6 +282,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -616,8 +636,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -726,12 +744,13 @@
       <workItem from="1461915001010" duration="6849000" />
       <workItem from="1461928033995" duration="16493000" />
       <workItem from="1462048081948" duration="360000" />
-      <workItem from="1462136690499" duration="1185000" />
+      <workItem from="1462136690499" duration="1361000" />
+      <workItem from="1462185360717" duration="6568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162400000" />
+    <option name="totallyTimeSpent" value="169144000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -749,11 +768,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22156134" sideWeight="0.4842615" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284553" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40325204" sideWeight="0.5026022" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284553" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2126394" sideWeight="0.5157385" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284553" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24924472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27804878" sideWeight="0.49739778" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27642277" sideWeight="0.49739778" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -761,7 +781,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284553" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -783,20 +802,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/settings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/startup/server/configure-services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/startup/server/browser-policy.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -901,13 +906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/groups/groups.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1062,34 +1060,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/groups/server/publications.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-workout.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <marker date="1461961312976" expanded="true" signature="2689:6023" placeholder="..." />
-            <marker date="1461961312976" expanded="true" signature="2703:3195" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-plan-edit.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2412">
-          <caret line="149" column="24" selection-start-line="149" selection-start-column="24" selection-end-line="149" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/tools/helpers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -1104,16 +1074,6 @@
           <caret line="96" column="2" selection-start-line="96" selection-start-column="2" selection-end-line="96" selection-end-column="2" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-plan.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="63" column="32" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1138,22 +1098,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-workout-edit.jsx">
+    <entry file="file://$PROJECT_DIR$/imports/ui/components/dashboard-cards.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4122">
-          <caret line="246" column="65" selection-start-line="246" selection-start-column="25" selection-end-line="246" selection-end-column="65" />
+        <state relative-caret-position="162">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/components/dashboard-cards.jsx">
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-workout-edit.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+        <state relative-caret-position="2160">
+          <caret line="131" column="12" selection-start-line="131" selection-start-column="12" selection-end-line="140" selection-end-column="40" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-workout.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="58" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <marker date="1462186250618" expanded="true" signature="2682:6016" placeholder="..." />
+            <marker date="1462186250618" expanded="true" signature="2696:3188" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-plan.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="8" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/groups/server/publications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="80" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/groups/groups.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/components/regex-text-field.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-198">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-plan-edit.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-486">
+          <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/page-group-edit.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <marker date="1462191910163" expanded="true" signature="1296:2440" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1310:1710" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1333:1704" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1379:1396" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1543:1704" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1594:1611" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1740:2285" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1776:2270" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1805:2253" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="1929:1949" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="2340:2427" placeholder="..." />
+            <marker date="1462191910163" expanded="true" signature="2382:2399" placeholder="..." />
           </folding>
         </state>
       </provider>

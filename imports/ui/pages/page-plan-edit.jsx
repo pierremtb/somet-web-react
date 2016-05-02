@@ -68,7 +68,13 @@ export class PagePlanEdit extends React.Component {
   }
 
   goBack() {
-    const url = `/group/${this.props.params.group}/athlete/${this.props.params.athlete}/dashboard`;
+    const { group, athlete } = this.props.params;
+    let url = `/group/${group}/athlete/${athlete}/`;
+    if (Session.get('planToEdit')) {
+      url += `plan/view/${Session.get('planToEdit')._id}`;
+    } else {
+      url += 'plans';
+    }
     browserHistory.push(url);
     Session.set('planToEdit', false);
   }
@@ -120,7 +126,7 @@ export class PagePlanEdit extends React.Component {
           <FlatButton
             label="Retour"
             style={pageActionStyle}
-            onClick={() => this.goBack()}
+            onClick={this.goBack}
             icon={<FontIcon className="material-icons">arrow_back</FontIcon>}
           />
           <FlatButton
