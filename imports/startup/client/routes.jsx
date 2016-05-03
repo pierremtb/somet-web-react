@@ -16,6 +16,7 @@ import { PagePlanEdit } from '../../ui/pages/page-plan-edit.jsx';
 import { PageWorkoutEdit } from '../../ui/pages/page-workout-edit.jsx';
 import { PageGroupEdit } from '../../ui/pages/page-group-edit.jsx';
 import { PageGroup } from '../../ui/pages/page-group.jsx';
+import { PageProfile } from '../../ui/pages/page-profile.jsx';
 import { PageLogin } from '../../ui/pages/page-login.jsx';
 import { PageAthlete } from '../../ui/pages/page-athlete.jsx';
 import { PageNotFound } from '../../ui/pages/page-not-found.jsx';
@@ -96,6 +97,13 @@ Meteor.startup(() => {
             <Route path="view/:id" component={PageWorkout} onEnter={requireAuth} />
             <Route path="edit/:id" component={PageWorkoutEdit} onEnter={requireAuth} />
             <Route path="new" component={PageWorkoutEdit} onEnter={requireAuth} />
+          </Route>
+          <Route
+            name="page-profile"
+            path="/profile"
+            onEnter={requireAuth}
+          >
+            <Route path=":username" component={PageProfile} onEnter={requireAuth} />
           </Route>
           <Route path="*" component={PageNotFound} />
         </Route>

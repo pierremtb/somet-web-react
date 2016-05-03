@@ -42,6 +42,10 @@ export function AuthenticatedNavigation(props) {
     return objsArray.filter(a => a._id !== Meteor.user()._id);
   }
 
+  function openMyProfile() {
+    browserHistory.push(`/profile/${Meteor.user().username}`);
+  }
+
   return (
     <div className="side-nav" style={{ background: primaryDarkColor }}>
       <img src="/somet-logo.png" alt="Logo Somet" id="somet-logo" />
@@ -110,15 +114,9 @@ export function AuthenticatedNavigation(props) {
         <ListItem
           primaryText={Meteor.user().profile.fullName}
           leftIcon={<FontIcon className="material-icons">account_circle</FontIcon>}
-          initiallyOpen
           value={'account'}
-          primaryTogglesNestedList
+          onTouchTap={() => openMyProfile()}
           nestedItems={[
-            <ListItem
-              primaryText="Profil"
-              value={"profile"}
-              leftIcon={<FontIcon className="material-icons">personfunction outline</FontIcon>}
-            />,
             <ListItem
               primaryText="Paramètres"
               value={"settings"}

@@ -19,3 +19,13 @@ Meteor.publish('all-users-in-this-group-by-name', name => {
   group.athletes.map(id => usersIds.push(id));
   return Meteor.users.find({ _id: { $in: usersIds } });
 });
+
+Meteor.publish('this-user-and-groups-by-username', username => {
+  check(username, String);
+  const user = Meteor.users.findOne({ username });
+  let groups;
+  if (user) {
+    groups = Groups.find({ _id: { $in: user.profile.groups } });
+  }
+  return [Meteor.users.find({ username }), groups];
+});
