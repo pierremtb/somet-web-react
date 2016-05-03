@@ -15,6 +15,7 @@ import { PageFeed } from '../../ui/pages/page-feed.jsx';
 import { PagePlanEdit } from '../../ui/pages/page-plan-edit.jsx';
 import { PageWorkoutEdit } from '../../ui/pages/page-workout-edit.jsx';
 import { PageGroupEdit } from '../../ui/pages/page-group-edit.jsx';
+import { PageGroup } from '../../ui/pages/page-group.jsx';
 import { PageLogin } from '../../ui/pages/page-login.jsx';
 import { PageAthlete } from '../../ui/pages/page-athlete.jsx';
 import { PageNotFound } from '../../ui/pages/page-not-found.jsx';
@@ -68,6 +69,15 @@ Meteor.startup(() => {
             <Route path="plans" name="plans" component={TabPlans} onEnter={requireAuth} />
             <Route path="calendar" name="calendar" component={TabCalendar} onEnter={requireAuth} />
             <Route path="analysis" name="analysis" component={TabAnalysis} onEnter={requireAuth} />
+          </Route>
+          <Route
+            name="page-group"
+            path="/group"
+            onEnter={requireAuth}
+          >
+            <Route path=":group/view" component={PageGroup} onEnter={requireAuth} />
+            <Route path=":group/edit" component={PageGroupEdit} onEnter={requireAuth} />
+            <Route path="new" component={PageGroupEdit} onEnter={requireAuth} />
           </Route>
           <Route
             name="page-plan"

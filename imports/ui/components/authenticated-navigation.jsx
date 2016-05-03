@@ -19,6 +19,10 @@ export function AuthenticatedNavigation(props) {
     browserHistory.push(url);
   }
 
+  function openGroupView(groupName) {
+    browserHistory.push(`/group/${groupName}/view`);
+  }
+
   function openFeed() {
     browserHistory.push('/feed');
   }
@@ -55,7 +59,7 @@ export function AuthenticatedNavigation(props) {
             value={group.name}
             leftIcon={<FontIcon className="material-icons">group_work</FontIcon>}
             initiallyOpen
-            primaryTogglesNestedList
+            onTouchTap={() => openGroupView(group.name)}
             nestedItems={amIn(group.athletes) ?
                 [<ListItem
                   key={1}

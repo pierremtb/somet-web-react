@@ -1,5 +1,4 @@
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { workoutSchema } from './schema';
 
 class WorkoutsCollection extends Mongo.Collection {

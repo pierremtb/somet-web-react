@@ -38,6 +38,16 @@ export const sometDarkTheme = getMuiTheme({
     focusColor: accentColor,
     hintColor: fade(white, 0.7),
   },
+  toggle: {
+    thumbOnColor: accentColor,
+    thumbOffColor: fade(white, 0.5),
+    trackOnColor: fade(accentColor, 0.5),
+    trackOffColor: fade(white, 0.2),
+  },
+  checkbox: {
+    boxColor: white,
+    checkedColor: accentColor,
+  },
 });
 
 export const sometLightTheme = getMuiTheme({

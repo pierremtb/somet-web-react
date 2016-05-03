@@ -9,7 +9,7 @@ Meteor.publish('my-groups', function getMyGroup() {
 
 Meteor.publish('all-groups-names', () => Groups.find({}, { fields: { name: 1 } }));
 
-Meteor.publish('this-group-name', name => {
+Meteor.publish('this-group-by-name', name => {
   check(name, String);
   return Groups.find({ name });
 });

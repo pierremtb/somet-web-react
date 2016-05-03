@@ -21,21 +21,29 @@ export default class RegexTextField extends React.Component {
       errorValue = errorUnavailable;
     }
     this.setState({ errorValue });
+    this.props.onChange(event);
   }
 
   render() {
-    const { hintText, disabled, inputStyle, style, hintStyle, fullWidth } = this.props;
+    const { hintText, disabled, inputStyle, style, hintStyle,
+      fullWidth, leftIconName, value } = this.props;
     return (
-      <TextField
-        onChange={this.handleChange}
-        hintText={hintText}
-        errorText={this.state.errorValue}
-        disabled={disabled}
-        inputStyle={inputStyle}
-        style={style}
-        hintStyle={hintStyle}
-        fullWidth={fullWidth}
-      />
+      <div>
+        {leftIconName ?
+          <i className="material-icons space_right">{leftIconName}</i>
+        : null}
+        <TextField
+          onChange={this.handleChange}
+          hintText={hintText}
+          errorText={this.state.errorValue}
+          disabled={disabled}
+          inputStyle={inputStyle}
+          style={style}
+          value={value}
+          hintStyle={hintStyle}
+          fullWidth={fullWidth}
+        />
+      </div>
     );
   }
 
@@ -46,6 +54,7 @@ RegexTextField.propTypes = {
   unavailableValues: React.PropTypes.array,
   errorUnavailable: React.PropTypes.string,
   errorRegex: React.PropTypes.string,
+  leftIconName: React.PropTypes.element,
 
   children: React.PropTypes.node,
 

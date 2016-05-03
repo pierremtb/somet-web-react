@@ -158,7 +158,6 @@ export class PageWorkoutEdit extends React.Component {
         mood: parseFloat(this.state.crMoodValue),
       },
     };
-    console.log(workout);
     if (Session.get('workoutToEdit')) {
       Workouts.update.call({ _id: Session.get('workoutToEdit')._id, workout }, (e) => {
         if (!e) {

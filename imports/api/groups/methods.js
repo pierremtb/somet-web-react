@@ -1,22 +1,19 @@
 import { Groups } from './groups';
+import { insertGroupSchema } from './schema';
 
 export const insert = new ValidatedMethod({
   name: 'groups.insert',
-  validate: new SimpleSchema({
-    name: { type: String },
-  }).validator(),
+  validate: insertGroupSchema.validator(),
   run(group) {
-    Groups.insert(group);
+    return Groups.insert(group);
   },
 });
 
 export const update = new ValidatedMethod({
   name: 'groups.update',
-  validate: new SimpleSchema({
-    _id: { type: String },
-  }).validator(),
-  run({ _id, obj }) {
-    Groups.update(_id, { $set: obj });
+  validate() {},
+  run({ _id, group }) {
+    Groups.update(_id, { $set: group });
   },
 });
 
