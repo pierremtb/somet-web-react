@@ -7,7 +7,7 @@ import FontIcon from 'material-ui/FontIcon';
 import Subheader from 'material-ui/Subheader';
 import { SelectableList } from './selectable-list.jsx';
 
-export function AuthenticatedNavigation(props) {
+export function AuthenticatedNavigation(props = { list: [] }) {
   function openUserView(groupName, athleteName) {
     let currentTab;
     if (Session.get('selectedAthleteTabName')) {
@@ -27,12 +27,6 @@ export function AuthenticatedNavigation(props) {
     browserHistory.push('/feed');
   }
 
-  function logout() {
-    Meteor.logout(() => {
-      browserHistory.push('/action/login');
-    });
-  }
-
   function amIn(objsArray) {
     const me = objsArray.filter((obj) => obj._id === Meteor.userId());
     return me.length > 0;
@@ -49,20 +43,33 @@ export function AuthenticatedNavigation(props) {
   return (
     <div className="side-nav" style={{ background: primaryDarkColor }}>
       <img src="/somet-logo.png" alt="Logo Somet" id="somet-logo" />
-      <SelectableList defaultValue={Meteor.user().username}>
+      <SelectableList>
+        <Subheader>Compte</Subheader>
         <ListItem
           primaryText="Flux"
           value={'feed'}
           onTouchTap={openFeed}
           leftIcon={<FontIcon className="material-icons">dashboard</FontIcon>}
         />
+        <ListItem
+          primaryText="Notifications"
+          value={'notifications'}
+          onTouchTap={openFeed}
+          leftIcon={<FontIcon className="material-icons">notifications</FontIcon>}
+        />
+        <ListItem
+          primaryText="Profil"
+          value={'profile'}
+          onTouchTap={() => openMyProfile()}
+          leftIcon={<FontIcon className="material-icons">account_circle</FontIcon>}
+        />
         <Subheader>Groupes</Subheader>
-        {props.list.map((group) => (
+        {props.list.map(group => (
           <ListItem
             primaryText={group.name}
             value={group.name}
             leftIcon={<FontIcon className="material-icons">group_work</FontIcon>}
-            initiallyOpen
+            initiallyOpen={true}
             onTouchTap={() => openGroupView(group.name)}
             nestedItems={amIn(group.athletes) ?
                 [<ListItem
@@ -72,23 +79,25 @@ export function AuthenticatedNavigation(props) {
                   onTouchTap={() => openUserView(group.name, Meteor.user().username)}
                   leftIcon={<FontIcon className="material-icons">directions_bike</FontIcon>}
                 />,
-                  <ListItem
-                    primaryText="Autres athlètes"
-                    key={2}
-                    value="other_athletes"
-                    leftIcon={<FontIcon className="material-icons">more_vert</FontIcon>}
-                    initiallyOpen={false}
-                    primaryTogglesNestedList
-                    nestedItems={withoutMe(group.athletes).map((athlete, key) => (
-                      <ListItem
-                        key={key + 1}
-                        value={athlete.username}
-                        primaryText={athlete.profile.fullName}
-                        onTouchTap={() => openUserView(group.name, athlete.username)}
-                        leftIcon={<FontIcon className="material-icons">directions_bike</FontIcon>}
-                      />
-                    ))}
-                  />,
+                  withoutMe(group.athletes).length > 0 ?
+                    <ListItem
+                      primaryText="Autres athlètes"
+                      key={2}
+                      value="other_athletes"
+                      leftIcon={<FontIcon className="material-icons">more_vert</FontIcon>}
+                      initiallyOpen={false}
+                      primaryTogglesNestedList
+                      nestedItems={withoutMe(group.athletes).map((athlete, key) => (
+                        <ListItem
+                          key={key + 1}
+                          value={athlete.username}
+                          primaryText={athlete.profile.fullName}
+                          onTouchTap={() => openUserView(group.name, athlete.username)}
+                          leftIcon={<FontIcon className="material-icons">directions_bike</FontIcon>}
+                        />
+                      ))}
+                    />
+                  : null,
                 ]
               :
                 group.athletes.map((athlete, key) => (
@@ -108,27 +117,6 @@ export function AuthenticatedNavigation(props) {
           value={'new_group'}
           onTouchTap={() => browserHistory.push('/group/new')}
           leftIcon={<FontIcon className="material-icons">add</FontIcon>}
-        />
-
-        <Subheader>Mon compte</Subheader>
-        <ListItem
-          primaryText={Meteor.user().profile.fullName}
-          leftIcon={<FontIcon className="material-icons">account_circle</FontIcon>}
-          value={'account'}
-          onTouchTap={() => openMyProfile()}
-          nestedItems={[
-            <ListItem
-              primaryText="Paramètres"
-              value={"settings"}
-              leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
-            />,
-            <ListItem
-              primaryText="Déconnexion"
-              value={"logout"}
-              onTouchTap={() => logout()}
-              leftIcon={<FontIcon className="material-icons">exit_to_app</FontIcon>}
-            />]
-          }
         />
       </SelectableList>
     </div>

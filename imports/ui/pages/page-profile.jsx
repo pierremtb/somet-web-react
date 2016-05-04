@@ -19,7 +19,6 @@ export class PageProfile extends React.Component {
     super(props);
 
     this.getMeteorData = this.getMeteorData.bind(this);
-    this.goBack = this.goBack.bind(this);
   }
 
   getMeteorData() {
@@ -57,10 +56,6 @@ export class PageProfile extends React.Component {
     return data;
   }
 
-  goBack() {
-    browserHistory.push('/feed');
-  }
-
   logout() {
     Meteor.logout(() => browserHistory.push('/action/login'));
   }
@@ -68,22 +63,21 @@ export class PageProfile extends React.Component {
   render() {
     return (
       <div className="tab-content">
-        <div>
-          <FlatButton
-            label="Retour"
-            style={pageActionStyle}
-            onClick={this.goBack}
-            icon={<FontIcon className="material-icons">arrow_back</FontIcon>}
-          />
-          {this.canEdit ?
+        {this.canEdit ?
+          <div>
+            <FlatButton
+              label="Paramètres"
+              style={pageActionStyle}
+              icon={<FontIcon className="material-icons">settings</FontIcon>}
+            />
             <FlatButton
               label="Déconnexion"
               style={pageActionStyle}
               onClick={this.logout}
               icon={<FontIcon className="material-icons">exit_to_app</FontIcon>}
             />
-          : null}
-        </div>
+          </div>
+        : null}
         {this.canView ?
           <div className="row">
             <div className="col s12">
