@@ -12,6 +12,7 @@ import { TabAnalysis } from '../../ui/components/tab-analysis.jsx';
 import { PagePlan } from '../../ui/pages/page-plan.jsx';
 import { PageWorkout } from '../../ui/pages/page-workout.jsx';
 import { PageFeed } from '../../ui/pages/page-feed.jsx';
+import { PageNotifications } from '../../ui/pages/page-notifications.jsx';
 import { PagePlanEdit } from '../../ui/pages/page-plan-edit.jsx';
 import { PageWorkoutEdit } from '../../ui/pages/page-workout-edit.jsx';
 import { PageGroupEdit } from '../../ui/pages/page-group-edit.jsx';
@@ -58,6 +59,7 @@ Meteor.startup(() => {
         <Route path="/" component={AppLayout}>
           <IndexRoute name="home" component={PageFeed} onEnter={requireAuth} />
           <Route path="feed" component={PageFeed} onEnter={requireAuth} />
+          <Route path="notifications" component={PageNotifications} onEnter={requireAuth} />
           <Route name="create-group" path="/group/new" component={PageGroupEdit} />
           <Route
             name="page-athlete"

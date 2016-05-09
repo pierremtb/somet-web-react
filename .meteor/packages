@@ -40,3 +40,4 @@ static-html
 universe:modules
 selaias:accounts-strava
 service-configuration
+brettle:accounts-add-service

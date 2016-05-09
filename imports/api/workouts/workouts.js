@@ -10,6 +10,9 @@ class WorkoutsCollection extends Mongo.Collection {
   update(selector, modifier) {
     return super.update(selector, modifier);
   }
+  upsert(selector, modifier) {
+    return super.update(selector, modifier, { upsert: true });
+  }
   remove(selector) {
     return super.remove(selector);
   }

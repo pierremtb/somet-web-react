@@ -24,8 +24,9 @@ Meteor.publish('this-user-and-groups-by-username', username => {
   check(username, String);
   const user = Meteor.users.findOne({ username });
   let groups;
-  if (user) {
+  if (user && user.profile.groups) {
     groups = Groups.find({ _id: { $in: user.profile.groups } });
+    return [Meteor.users.find({ username }), groups];
   }
-  return [Meteor.users.find({ username }), groups];
+  return Meteor.users.find({ username });
 });

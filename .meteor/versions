@@ -17,6 +17,11 @@ binary-heap@1.0.8
 blaze@2.1.7
 blaze-tools@1.0.8
 boilerplate-generator@1.0.8
+brettle:accounts-add-service@1.0.0
+brettle:accounts-multiple@0.3.1
+brettle:workaround-issue-4331@0.0.4
+brettle:workaround-issue-4862@0.0.3
+brettle:workaround-issue-4970@0.0.4
 browser-policy@1.0.9
 browser-policy-common@1.0.9
 browser-policy-content@1.0.10

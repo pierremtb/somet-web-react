@@ -37,7 +37,7 @@ function wrapState(ComposedComponent) {
 
   ComposedClass.propTypes = {
     children: React.PropTypes.node.isRequired,
-    defaultValue: React.PropTypes.number.isRequired,
+    defaultValue: React.PropTypes.string.isRequired,
   };
 
   return ComposedClass;

@@ -8,7 +8,6 @@ function composer(props, onReady) {
   const subscription = Meteor.subscribe('this-group-by-name', name);
   if (subscription.ready()) {
     const group = Groups.findOne({ name });
-    console.log(group);
     let amITrainer = false;
     let amIAthlete = false;
     if (group.trainers.indexOf(Meteor.userId()) !== -1) {

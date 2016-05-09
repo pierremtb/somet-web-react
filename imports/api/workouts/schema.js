@@ -8,7 +8,6 @@ export const insertWorkoutSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    denyUpdate: true,
     optional: true,
   },
   title: {
@@ -101,7 +100,6 @@ export const workoutSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    denyUpdate: true,
   },
   title: {
     type: String,

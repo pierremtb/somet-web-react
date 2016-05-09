@@ -27,6 +27,10 @@ export function AuthenticatedNavigation(props = { list: [] }) {
     browserHistory.push('/feed');
   }
 
+  function openNotifications() {
+    browserHistory.push('/notifications');
+  }
+
   function amIn(objsArray) {
     const me = objsArray.filter((obj) => obj._id === Meteor.userId());
     return me.length > 0;
@@ -43,18 +47,18 @@ export function AuthenticatedNavigation(props = { list: [] }) {
   return (
     <div className="side-nav" style={{ background: primaryDarkColor }}>
       <img src="/somet-logo.png" alt="Logo Somet" id="somet-logo" />
-      <SelectableList>
+      <SelectableList defaultValue={'feed'}>
         <Subheader>Compte</Subheader>
         <ListItem
           primaryText="Flux"
           value={'feed'}
           onTouchTap={openFeed}
-          leftIcon={<FontIcon className="material-icons">dashboard</FontIcon>}
+          leftIcon={<FontIcon className="material-icons">home</FontIcon>}
         />
         <ListItem
           primaryText="Notifications"
           value={'notifications'}
-          onTouchTap={openFeed}
+          onTouchTap={openNotifications}
           leftIcon={<FontIcon className="material-icons">notifications</FontIcon>}
         />
         <ListItem
@@ -69,44 +73,41 @@ export function AuthenticatedNavigation(props = { list: [] }) {
             primaryText={group.name}
             value={group.name}
             leftIcon={<FontIcon className="material-icons">group_work</FontIcon>}
-            initiallyOpen={true}
+            initiallyOpen
             onTouchTap={() => openGroupView(group.name)}
             nestedItems={amIn(group.athletes) ?
                 [<ListItem
-                  key={1}
                   value={Meteor.user().username}
                   primaryText="Moi"
                   onTouchTap={() => openUserView(group.name, Meteor.user().username)}
-                  leftIcon={<FontIcon className="material-icons">directions_bike</FontIcon>}
+                  leftIcon={<FontIcon className="material-icons">person_outline</FontIcon>}
                 />,
-                  withoutMe(group.athletes).length > 0 ?
+                  withoutMe(group.athletes).length > 0 &&
+                    (group.seeOtherAthletesPlans || group.seeOtherAthletesWorkouts) ?
                     <ListItem
                       primaryText="Autres athlètes"
-                      key={2}
                       value="other_athletes"
-                      leftIcon={<FontIcon className="material-icons">more_vert</FontIcon>}
-                      initiallyOpen={false}
+                      leftIcon={<FontIcon className="material-icons">people</FontIcon>}
+                      initiallyOpen
                       primaryTogglesNestedList
                       nestedItems={withoutMe(group.athletes).map((athlete, key) => (
                         <ListItem
-                          key={key + 1}
                           value={athlete.username}
                           primaryText={athlete.profile.fullName}
                           onTouchTap={() => openUserView(group.name, athlete.username)}
-                          leftIcon={<FontIcon className="material-icons">directions_bike</FontIcon>}
+                          leftIcon={<FontIcon className="material-icons">person</FontIcon>}
                         />
                       ))}
                     />
                   : null,
                 ]
               :
-                group.athletes.map((athlete, key) => (
+                group.athletes.map(athlete => (
                   <ListItem
-                    key={key + 1}
                     value={athlete.username}
                     primaryText={athlete.profile.fullName}
                     onTouchTap={() => openUserView(group.name, athlete.username)}
-                    leftIcon={<FontIcon className="material-icons">directions_bike</FontIcon>}
+                    leftIcon={<FontIcon className="material-icons">person</FontIcon>}
                   />
                 ))}
           />

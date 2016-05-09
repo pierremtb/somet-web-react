@@ -7,11 +7,9 @@ import { sometLightTheme, pageActionStyle } from '../tools/themes.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { List, ListItem } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import FontIcon from 'material-ui/FontIcon';
-import AutoComplete from 'material-ui/AutoComplete';
 import { Groups } from '../../api/groups/groups';
 
 export class PageGroup extends React.Component {
@@ -21,6 +19,7 @@ export class PageGroup extends React.Component {
     this.getMeteorData = this.getMeteorData.bind(this);
     this.goBack = this.goBack.bind(this);
     this.editGroup = this.editGroup.bind(this);
+    this.openAthleteView = this.openAthleteView.bind(this);
   }
 
   getMeteorData() {
@@ -50,34 +49,36 @@ export class PageGroup extends React.Component {
     return data;
   }
 
-  goBack() {
-    browserHistory.push('/feed');
-  }
-
   editGroup() {
     Session.set('groupToEdit', this.data.group);
     browserHistory.push(`/group/${this.props.params.group}/edit`);
   }
 
+  openAthleteView(athlete) {
+    browserHistory.push(`/group/${this.props.params.group}/athlete/${athlete}/dashboard`);
+  }
+
+  openProfile(athlete) {
+    browserHistory.push(`/profile/${athlete}`);
+  }
+
+  goBack() {
+    browserHistory.push('/feed');
+  }
+
   render() {
     return (
       <div className="tab-content">
-        <div>
-          <FlatButton
-            label="Retour"
-            style={pageActionStyle}
-            onClick={this.goBack}
-            icon={<FontIcon className="material-icons">arrow_back</FontIcon>}
-          />
-          {this.canEdit ?
+        {this.canEdit ?
+          <div>
             <FlatButton
               label="Modifier"
               style={pageActionStyle}
               onClick={this.editGroup}
               icon={<FontIcon className="material-icons">edit</FontIcon>}
             />
-          : null}
-        </div>
+          </div>
+        : null}
         <div className="row">
           <div className="col s12">
             <span className="big-title white">
@@ -100,6 +101,15 @@ export class PageGroup extends React.Component {
                             {Meteor.users.findOne(id).profile.fullName.charAt(0)}
                           </Avatar>
                         }
+                        rightIcon={
+                          <FontIcon
+                            className="material-icons"
+                            onTouchTap={() => this.openProfile(Meteor.users.findOne(id).username)}
+                          >
+                            info
+                          </FontIcon>
+                        }
+                        onClick={() => this.openProfile(Meteor.users.findOne(id).username)}
                         primaryText={Meteor.users.findOne(id).profile.fullName}
                         secondaryText={`@${Meteor.users.findOne(id).username}`}
                       />
@@ -123,6 +133,15 @@ export class PageGroup extends React.Component {
                               {Meteor.users.findOne(id).profile.fullName.charAt(0)}
                             </Avatar>
                           }
+                          rightIcon={
+                            <FontIcon
+                              className="material-icons"
+                              onTouchTap={() => this.openProfile(Meteor.users.findOne(id).username)}
+                            >
+                              info
+                            </FontIcon>
+                          }
+                          onClick={() => this.openAthleteView(Meteor.users.findOne(id).username)}
                           primaryText={Meteor.users.findOne(id).profile.fullName}
                           secondaryText={`@${Meteor.users.findOne(id).username}`}
                         />

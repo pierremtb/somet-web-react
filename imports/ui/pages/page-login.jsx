@@ -15,7 +15,6 @@ export class PageLogin extends React.Component {
 
     this.onSignupClick = this.onSignupClick.bind(this);
     this.onLoginClick = this.onLoginClick.bind(this);
-    this.onLoginWithStravaClick = this.onLoginWithStravaClick.bind(this);
 
     this.state = {
       showSignup: false,
@@ -38,14 +37,6 @@ export class PageLogin extends React.Component {
     }
   }
 
-  onLoginWithStravaClick() {
-    const options = {
-      requestPermissions: ['email'],
-      redirectUrl: '/home',
-    };
-    Meteor.loginWithStrava(options);
-  }
-
   handleSubmit(event) {
     event.preventDefault();
   }
@@ -55,19 +46,6 @@ export class PageLogin extends React.Component {
       <div className="center-align login-container">
 
         <img src="/somet-logo.png" id="somet_logo" alt="Logo de Somet" />
-        <div className="actions">
-          <RaisedButton
-            data-social-login="loginWithStrava"
-            label="Connexion avec Strava"
-            className="full-width"
-            onClick={this.onLoginWithStravaClick}
-            backgroundColor={orange700}
-            labelColor="#fff"
-          />
-        </div>
-        <div className="actions">
-          <div className="separate"></div>
-        </div>
         <form className="loginForm" onSubmit={this.handleSubmit}>
           <MuiThemeProvider muiTheme={sometLightTheme}>
             <div className="forms_container">
@@ -118,7 +96,7 @@ export class PageLogin extends React.Component {
           </MuiThemeProvider>
           <div className="actions" id="auth_actions">
             <RaisedButton
-              label="Connexion par identifiants"
+              label="Connexion"
               className="full-width space_bottom"
               backgroundColor={this.state.showSignup ? primaryDarkColor : accentColor}
               labelColor="#fff"

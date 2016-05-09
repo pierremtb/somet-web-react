@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function PageFeed() {
+export function PageNotifications() {
   return (
     <div className="tab-content">
-      home
+      notifications
     </div>
   );
 }
