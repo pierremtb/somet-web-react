@@ -3,11 +3,15 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/.meteor/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/webdriverio/test/site/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules/xolvio-ddp/examples/example-meteor-server/.meteor/platforms" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="somet-web-react node_modules" level="project" />
-    <orderEntry type="library" name="meteor-packages-auto-import-npm" level="project" />
     <orderEntry type="library" name="meteor-packages-auto-import-browser" level="project" />
+    <orderEntry type="library" name="meteor-packages-auto-import-npm" level="project" />
+    <orderEntry type="library" name="somet-web-react node_modules" level="project" />
+    <orderEntry type="library" name="somet-web-react-new node_modules" level="project" />
   </component>
 </module>

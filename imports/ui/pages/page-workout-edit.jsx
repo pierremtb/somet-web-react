@@ -17,6 +17,19 @@ import {
   datePickerFieldStyle, workoutCardTextStyle,
   datePickerStyle, hintTextFieldStyleDark, normalTextFieldStyleDark } from '../tools/themes.js';
 
+const styles = {
+  exampleImageInput: {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: '100%',
+    opacity: 0,
+  },
+};
+
 export class PageWorkoutEdit extends React.Component {
 
   constructor(props) {
@@ -182,6 +195,26 @@ export class PageWorkoutEdit extends React.Component {
     }
   }
 
+  parseFit(event) {
+    const reader = new FileReader();
+    reader.onload = function (file) {
+      console.log(file);
+      Meteor.call('parseThisFitBufferString', file.srcElement.result, function(err, fitObj) {
+        if (err) {
+          console.log(err);
+        } else {
+          Meteor.setTimeout(() => console.log(fitObj), 1000);
+        }
+      });
+    };
+
+    reader.onerror = function (e) {
+      console.error('File could not be read! Code ' + e.target.error.code);
+    };
+
+    reader.readAsBinaryString(event.target.files[0]);
+  }
+
   render() {
     return (
       <div className="tab-content">
@@ -198,6 +231,14 @@ export class PageWorkoutEdit extends React.Component {
             style={pageActionStyle}
             icon={<FontIcon className="material-icons">save</FontIcon>}
           />
+          <FlatButton
+            label="Importer un fichier .FIT"
+            style={pageActionStyle}
+            labelPosition="before"
+            icon={<FontIcon className="material-icons">save</FontIcon>}
+          >
+            <input type="file" onChange={this.parseFit} style={styles.exampleImageInput} />
+          </FlatButton>
         </div>
         <div className="row">
           <div className="col s12">
