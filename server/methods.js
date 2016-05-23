@@ -11,13 +11,16 @@ Meteor.methods({
     const fitBuffer = new Buffer(fitBufferString, 'binary');
     const easyFit = new EasyFit({
       force: true,
-      mode: 'cascade',
+      speedUnit: 'km/h',
+      lengthUnit: 'm',
+      temperatureUnit: 'celsius',
+      elapsedRecordField: true,
+      mode: 'both',
     });
     easyFit.parse(fitBuffer, (err, fitObj) => {
       if (err) {
         future.return(err);
       } else {
-        console.log(fitObj.file_id);
         future.return(fitObj);
       }
     });

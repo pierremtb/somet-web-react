@@ -137,7 +137,7 @@ export const workoutSchema = new SimpleSchema({
     type: Boolean,
     label: 'Wether there is a FIT file linked to this workout',
   },
-  fitValues: {
+  fitObject: {
     type: Object,
     blackbox: true,
     label: 'The FIT-related object linked to this workout,' +

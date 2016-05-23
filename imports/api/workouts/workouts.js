@@ -39,7 +39,7 @@ Workouts.publicFields = {
   support: 1,
   cr: 1,
   fitLinked: 1,
-  fitValues: 1,
+  fitObject: 1,
   speed: 1,
   power: 1,
   cadence: 1,

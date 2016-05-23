@@ -9,8 +9,15 @@ import DatePicker from 'material-ui/DatePicker';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import SubHeader from 'material-ui/Subheader';
 import SelectField from 'material-ui/SelectField';
+import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
+import { HTTP } from 'meteor/http';
+import { WorkoutChart } from '../components/workout-chart.jsx';
+import { getFitSupport, dispDuration, dispDistance,
+  dispElevation, dispCalories, dispPower } from '../tools/helpers';
+import Slider from 'material-ui/Slider';
+import { pink400, orange400, red400, blue400, green400, brown400 } from 'material-ui/styles/colors';
 import {
   sometLightTheme,
   pageActionStyle,
@@ -50,6 +57,9 @@ export class PageWorkoutEdit extends React.Component {
         crSensationsValue: workout.cr ? `${workout.cr.sensations}` : 0,
         crMoodValue: workout.cr ? `${workout.cr.mood}` : 0,
         fitLinked: workout.fitLinked ? workout.fitLinked : false,
+        fitObject: workout.fitObject ? workout.fitObject : {},
+        parsingFit: false,
+        xAxisType: 'distance',
       };
     } else {
       this.state = {
@@ -64,27 +74,9 @@ export class PageWorkoutEdit extends React.Component {
         crSensationsValue: '0',
         crMoodValue: '0',
         fitLinked: false,
+        parsingFit: false,
+        xAxisType: 'distance',
       };
-    }
-
-    this.durationItems = [];
-    for (let i = 1; i < 120; i++) {
-      this.durationItems.push(
-        <MenuItem
-          value={300 * i}
-          primaryText={`${Math.floor(300 * i / 3600)}h${300 * i % 3600 / 60}`}
-        />
-      );
-    }
-
-    this.distanceItems = [];
-    for (let i = 1; i < 300; i++) {
-      this.distanceItems.push(
-        <MenuItem
-          value={i}
-          primaryText={`${i} km`}
-        />
-      );
     }
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -99,6 +91,7 @@ export class PageWorkoutEdit extends React.Component {
     this.handleCrMoodValueChange = this.handleCrMoodValueChange.bind(this);
     this.saveWorkout = this.saveWorkout.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.parseFit = this.parseFit.bind(this);
   }
 
   handleTitleChange(e) {
@@ -113,7 +106,7 @@ export class PageWorkoutEdit extends React.Component {
     this.setState({ startDateValue });
   }
 
-  handleDurationChange(event, index, durationValue) {
+  handleDurationChange(event, durationValue) {
     this.setState({ durationValue });
   }
 
@@ -164,6 +157,7 @@ export class PageWorkoutEdit extends React.Component {
       distance: this.state.distanceValue,
       support: this.state.supportValue,
       fitLinked: this.state.fitLinked,
+      //fitObject: this.state.fitObject,
       cr: {
         effort: parseFloat(this.state.crEffortValue),
         pleasure: parseFloat(this.state.crPleasureValue),
@@ -197,21 +191,49 @@ export class PageWorkoutEdit extends React.Component {
 
   parseFit(event) {
     const reader = new FileReader();
-    reader.onload = function (file) {
-      console.log(file);
-      Meteor.call('parseThisFitBufferString', file.srcElement.result, function(err, fitObj) {
+    const self = this;
+    self.setState({ parsingFit: true });
+    reader.onload = (file) => {
+      Meteor.call('parseThisFitBufferString', file.srcElement.result, (err, fitObject) => {
         if (err) {
-          console.log(err);
-        } else {
-          Meteor.setTimeout(() => console.log(fitObj), 1000);
+          alert('Problème lors de la lecture du fichier.');
+          self.setState({ parsingFit: false });
+          return;
         }
+
+        if (fitObject.file_id.type !== 'activity') {
+          alert('Ce n\'est pas un fichier d\'activité');
+          self.setState({ parsingFit: false });
+          return;
+        }
+
+        const { sport,
+          total_timer_time, total_distance,
+          start_position_long, start_position_lat } = fitObject.activity.sessions[0];
+
+        self.setState({
+          startDateValue: fitObject.activity.timestamp,
+          supportValue: getFitSupport(sport),
+          durationValue: parseInt(total_timer_time, 10),
+          distanceValue: parseInt(total_distance, 10),
+          fitLinked: true,
+          fitObject,
+          parsingFit: false,
+        });
+
+        console.log(self.state);
+
+        HTTP.call(
+          'get',
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${start_position_lat},${start_position_long}`,
+          (error, geocodeObj) => {
+            self.setState({
+              titleValue: `${sport} in ${geocodeObj.data.results[0].address_components[2].short_name}`,
+            });
+          }
+        );
       });
     };
-
-    reader.onerror = function (e) {
-      console.error('File could not be read! Code ' + e.target.error.code);
-    };
-
     reader.readAsBinaryString(event.target.files[0]);
   }
 
@@ -235,9 +257,13 @@ export class PageWorkoutEdit extends React.Component {
             label="Importer un fichier .FIT"
             style={pageActionStyle}
             labelPosition="before"
-            icon={<FontIcon className="material-icons">save</FontIcon>}
+            icon={<FontIcon className="material-icons">file_upload</FontIcon>}
           >
-            <input type="file" onChange={this.parseFit} style={styles.exampleImageInput} />
+            <input
+              type="file"
+              onChange={this.parseFit} style={styles.exampleImageInput}
+              accept=".fit"
+            />
           </FlatButton>
         </div>
         <div className="row">
@@ -301,29 +327,35 @@ export class PageWorkoutEdit extends React.Component {
                     <MenuItem value="endr" primaryText="Enduro" />
                     <MenuItem value="othr" primaryText="Autre" />
                   </SelectField>
-
-                  <SelectField
+                  <SubHeader>
+                    <span>{'Durée totale : '}</span>
+                    <span>{dispDuration(this.state.durationValue)}</span>
+                  </SubHeader>
+                  <Slider
+                    min={0}
+                    max={36000}
+                    step={300}
+                    defaultValue={7200}
                     value={this.state.durationValue}
                     onChange={this.handleDurationChange}
-                    floatingLabelText="Durée de la séance"
-                    fullWidth
-                  >
-                    {this.durationItems}
-                  </SelectField>
-
-                  <SelectField
+                  />
+                  <SubHeader>
+                    <span>{'Distance totale : '}</span>
+                    <span>{dispDistance(this.state.distanceValue)}</span>
+                  </SubHeader>
+                  <Slider
+                    min={0}
+                    max={300000}
+                    step={1000}
+                    defaultValue={35000}
                     value={this.state.distanceValue}
                     onChange={this.handleDistanceChange}
-                    floatingLabelText="Distance parcourue"
-                    fullWidth
-                  >
-                    {this.distanceItems}
-                  </SelectField>
+                  />
                 </CardText>
               </Card>
             </div>
             <div className="col s12 m6 space_bottom">
-              <Card initiallyExpanded>
+              <Card initiallyExpanded={false}>
                 <CardHeader
                   title="Evaluation des sensations"
                   subtitle="Echelles CR10 pour l'entraineur"
@@ -429,7 +461,7 @@ export class PageWorkoutEdit extends React.Component {
               </Card>
             </div>
             <div className="col s12 m6 space_bottom">
-              <Card initiallyExpanded>
+              <Card initiallyExpanded={false}>
                 <CardHeader
                   title="Contenu"
                   subtitle="Description de la séance"
@@ -449,6 +481,103 @@ export class PageWorkoutEdit extends React.Component {
                 </CardText>
               </Card>
             </div>
+            {this.state.fitLinked ?
+              <div className="col s12 space_bottom">
+                <Card initiallyExpanded>
+                  <CardHeader
+                    title="Analyse"
+                    subtitle="Données .FIT"
+                    actAsExpander
+                    showExpandableButton
+                  />
+                  <CardText expandable style={{ height: 'auto' }}>
+                    <SubHeader>Détails</SubHeader>
+                    <p>Ascension totale :
+                      <span>
+                        {dispElevation(this.state.fitObject.activity.sessions[0].total_ascent)}
+                      </span>
+                    </p>
+                    <p>Descente totale :
+                      <span>
+                        {dispElevation(this.state.fitObject.activity.sessions[0].total_descent)}
+                      </span>
+                    </p>
+                    <p>Calories consommées :
+                      <span>
+                        {dispCalories(this.state.fitObject.activity.sessions[0].total_calories)}
+                      </span>
+                    </p>
+                    <WorkoutChart
+                      xAxisType={this.state.xAxisType}
+                      color={green400}
+                      data={this.state.fitObject}
+                      reduceFactor={5}
+                      title="Altitude"
+                      yAxisField="altitude"
+                    />
+                    <WorkoutChart
+                      xAxisType={this.state.xAxisType}
+                      color={blue400}
+                      data={this.state.fitObject}
+                      reduceFactor={5}
+                      title="Vitesse"
+                      yAxisField="speed"
+                    />
+                    <WorkoutChart
+                      xAxisType={this.state.xAxisType}
+                      color={orange400}
+                      data={this.state.fitObject}
+                      reduceFactor={5}
+                      title="Puissance"
+                      yAxisField="power"
+                      details={
+                        <div className="row">
+                          <div className="col s4">
+                            <p>
+                              Puissance maximale :
+                              {dispPower(this.state.fitObject.activity.sessions[0].max_power)}
+                            </p>
+                            <p>
+                              Puissance moyenne :
+                              {dispPower(this.state.fitObject.activity.sessions[0].avg_power)}
+                            </p>
+                          </div>
+                        </div>
+                      }
+                    />
+                    <WorkoutChart
+                      xAxisType={this.state.xAxisType}
+                      color={red400}
+                      data={this.state.fitObject}
+                      reduceFactor={5}
+                      title="Fréquence cardiaque"
+                      yAxisField="heart_rate"
+                    />
+                    <WorkoutChart
+                      xAxisType={this.state.xAxisType}
+                      color={pink400}
+                      data={this.state.fitObject}
+                      reduceFactor={5}
+                      title="Cadence"
+                      yAxisField="cadence"
+                    />
+                    <WorkoutChart
+                      xAxisType={this.state.xAxisType}
+                      color={brown400}
+                      data={this.state.fitObject}
+                      reduceFactor={5}
+                      title="Température"
+                      yAxisField="temperature"
+                    />
+                  </CardText>
+                </Card>
+              </div>
+            : null}
+            <Snackbar
+              open={this.state.parsingFit}
+              message="Analyse en cours..."
+              autoHideDuration={999999}
+            />
           </div>
         </MuiThemeProvider>
       </div>

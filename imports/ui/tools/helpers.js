@@ -57,3 +57,22 @@ export function dispDate(d) {
 export function dispDuration(d) {
   return moment.utc(d * 1000).format('HH:mm:ss');
 }
+
+export function getFitSupport(s) {
+  switch (s) {
+    case 'cycling': return 'road';
+    default: return 'road';
+  }
+}
+
+export function dispElevation(e) {
+  return `${e}m`;
+}
+
+export function dispCalories(c) {
+  return `${c}kcal`;
+}
+
+export function dispPower(p) {
+  return `${p}W`;
+}
